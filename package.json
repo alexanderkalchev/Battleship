@@ -12,7 +12,7 @@
   },
   "license": "ISC",
   "author": "Aleksandar Kalchev",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "devDependencies": {
     "@eslint/js": "^10.0.1",

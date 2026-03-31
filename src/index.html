@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battleship</title>
+  </head>
+  <body>
+    <h1>Battleship</h1>
+    <main>
+      <div class="player-board"></div>
+      <div class="ship-selector">
+        <h2 class="orientation">Orientation:</h2>
+        <h1>Place ships</h1>
+        <div class="ship carrier" data-ship="carrier">
+          <div class="left">
+            <h2>Carrier</h2>
+          </div>
+          <div class="right">
+            <h2>5 spaces</h2>
+          </div>
+        </div>
+        <div class="ship battleship" data-ship="battleship">
+          <div class="left">
+            <h2>Battleship</h2>
+          </div>
+          <div class="right">
+            <h2>4 spaces</h2>
+          </div>
+        </div>
+        <div class="ship cruiser" data-ship="cruiser">
+          <div class="left">
+            <h2>Cruiser</h2>
+          </div>
+          <div class="right">
+            <h2>3 spaces</h2>
+          </div>
+        </div>
+        <div class="ship submarine" data-ship="submarine">
+          <div class="left">
+            <h2>Submarine</h2>
+          </div>
+          <div class="right">
+            <h2>3 spaces</h2>
+          </div>
+        </div>
+        <div class="ship destroyer" data-ship="destroyer">
+          <div class="left">
+            <h2>Destroyer</h2>
+          </div>
+          <div class="right">
+            <h2>2 spaces</h2>
+          </div>
+        </div>
+      </div>
+      <div class="computer-board"></div>
+    </main>
+    <button class="start-game">Start game</button>
+    <button class="reset-game">Reset</button>
+  </body>
+</html>
