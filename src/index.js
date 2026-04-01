@@ -29,6 +29,16 @@ const div_destroyer = document.querySelector(".destroyer");
 
 const button_start = document.querySelector(".start-game");
 
+const dialog_winner = document.querySelector("dialog");
+
+const h1_winner = document.querySelector(".winner-header");
+const h3_player_total_shots = document.querySelector(".left .total-shots");
+const h3_computer_total_shots = document.querySelector(".right .total-shots");
+const h3_player_accurate_shots = document.querySelector(".left .accurate-shots");
+const h3_computer_accurate_shots = document.querySelector(".right .accurate-shots");
+const h3_player_accuracy = document.querySelector(".left .accuracy-percentage");
+const h3_computer_accuracy = document.querySelector(".right .accuracy-percentage");
+
 // INIT PLAYERS
 const player = new Player([10,10], "real");
 const computer = new Player([10,10], "ai");
@@ -101,13 +111,11 @@ const {getState, beginGame, changeCurrentShip, getCurrentShip, getOrientation, c
     async function changeTurn(){
         game_turn = game_turn === player ? computer : player;
         if(player.board.isBoardEmpty()){
-            alert("AI wins!")
-            resetGame();
+            announceWinner(computer);
             return;
         };
         if(computer.board.isBoardEmpty()){
-            alert("Player wins!");
-            resetGame();
+            announceWinner(player);
             return;
         } 
         if(game_turn.type === "ai"){ 
@@ -170,6 +178,21 @@ const {getState, beginGame, changeCurrentShip, getCurrentShip, getOrientation, c
 
         updateEnemyBoard();
         updatePlayerBoard();
+    }
+
+    function announceWinner(winner){
+        h1_winner.innerText = `Winner: ${winner.type}`;
+
+        h3_computer_total_shots.innerText = `Total shots: ${player.board.accurateShots + player.board.innacurateShots}`
+        h3_player_total_shots.innerText = `Total shots: ${computer.board.accurateShots + computer.board.innacurateShots}`
+
+        h3_computer_accurate_shots.innerText = `Accurate shots: ${player.board.accurateShots}`
+        h3_player_accurate_shots.innerText = `Accurate shots: ${computer.board.accurateShots}`
+
+        h3_computer_accuracy.innerText = `Accuracy: ${Math.round((player.board.accurateShots / (player.board.accurateShots + player.board.innacurateShots))*100)}%`
+        h3_player_accuracy.innerText = `Accuracy: ${Math.round((computer.board.accurateShots / (computer.board.accurateShots + computer.board.innacurateShots))*100)}%`
+
+        dialog_winner.showModal();
     }
 
     return {getState, beginGame, changeCurrentShip, getCurrentShip, getOrientation, changeOrientation, placeShip, getPlacedShips, changeTurn, getTurn, resetGame}
