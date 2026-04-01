@@ -2,7 +2,9 @@ import Ship from "./ship.js";
 import { logError } from "./utils.js";
 
 export default class Gameboard{
+    #ships;
     constructor(size){
+        this.#ships = [5,4,3,3,2];
         this.aliveShipsCount = 0;
         this.accurateShots = 0;
         this.innacurateShots = 0;
@@ -75,27 +77,26 @@ export default class Gameboard{
     }
 
     populateBoard(){
-        let ships = [5,4,3,3,2];
         let func;
         let x;
         let length;
         let y;
         
-        while(ships.length !== 0){
+        while(this.#ships.length !== 0){
             try{
                 func = Math.round(Math.random());
                 x = Math.round((Math.random() * 100) % 10);
                 y = Math.round((Math.random() * 100) % 10);
-                length = ships[0];
+                length = this.#ships[0];
                 if(func === 1) this.placeShipHorizontally([x,y], new Ship(length));
                 if(func === 0) this.placeShipVertically([x,y], new Ship(length));
-                this.ships.shift();
+                this.#ships.shift();
             }
             catch(err){
                 console.log(err.message);
             }
         }
-
+        this.#ships = [5,4,3,3,2];
         console.log(this.printBoard());
     }
 
